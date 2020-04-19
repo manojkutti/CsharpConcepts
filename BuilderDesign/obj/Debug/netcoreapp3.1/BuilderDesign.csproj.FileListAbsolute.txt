@@ -1,0 +1,13 @@
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\bin\Debug\netcoreapp3.1\BuilderDesign.exe
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\bin\Debug\netcoreapp3.1\BuilderDesign.deps.json
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\bin\Debug\netcoreapp3.1\BuilderDesign.runtimeconfig.json
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\bin\Debug\netcoreapp3.1\BuilderDesign.runtimeconfig.dev.json
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\bin\Debug\netcoreapp3.1\BuilderDesign.dll
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\bin\Debug\netcoreapp3.1\BuilderDesign.pdb
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.csprojAssemblyReference.cache
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.csproj.CoreCompileInputs.cache
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.AssemblyInfoInputs.cache
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.AssemblyInfo.cs
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.dll
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.pdb
+C:\Users\manoj\source\repos\CSharp\BuilderDesign\obj\Debug\netcoreapp3.1\BuilderDesign.genruntimeconfig.cache

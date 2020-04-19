@@ -1,0 +1,13 @@
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\bin\Debug\netcoreapp3.1\PuzzleInFactoryPattern.exe
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\bin\Debug\netcoreapp3.1\PuzzleInFactoryPattern.deps.json
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\bin\Debug\netcoreapp3.1\PuzzleInFactoryPattern.runtimeconfig.json
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\bin\Debug\netcoreapp3.1\PuzzleInFactoryPattern.runtimeconfig.dev.json
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\bin\Debug\netcoreapp3.1\PuzzleInFactoryPattern.dll
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\bin\Debug\netcoreapp3.1\PuzzleInFactoryPattern.pdb
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.csprojAssemblyReference.cache
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.csproj.CoreCompileInputs.cache
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.AssemblyInfoInputs.cache
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.AssemblyInfo.cs
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.dll
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.pdb
+C:\Users\manoj\source\repos\CSharp\PuzzleInFactoryPattern\obj\Debug\netcoreapp3.1\PuzzleInFactoryPattern.genruntimeconfig.cache

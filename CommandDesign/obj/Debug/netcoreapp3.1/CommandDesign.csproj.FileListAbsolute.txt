@@ -1,0 +1,12 @@
+C:\Users\manoj\source\repos\CSharp\CommandDesign\bin\Debug\netcoreapp3.1\CommandDesign.exe
+C:\Users\manoj\source\repos\CSharp\CommandDesign\bin\Debug\netcoreapp3.1\CommandDesign.deps.json
+C:\Users\manoj\source\repos\CSharp\CommandDesign\bin\Debug\netcoreapp3.1\CommandDesign.runtimeconfig.json
+C:\Users\manoj\source\repos\CSharp\CommandDesign\bin\Debug\netcoreapp3.1\CommandDesign.runtimeconfig.dev.json
+C:\Users\manoj\source\repos\CSharp\CommandDesign\bin\Debug\netcoreapp3.1\CommandDesign.dll
+C:\Users\manoj\source\repos\CSharp\CommandDesign\bin\Debug\netcoreapp3.1\CommandDesign.pdb
+C:\Users\manoj\source\repos\CSharp\CommandDesign\obj\Debug\netcoreapp3.1\CommandDesign.csproj.CoreCompileInputs.cache
+C:\Users\manoj\source\repos\CSharp\CommandDesign\obj\Debug\netcoreapp3.1\CommandDesign.AssemblyInfoInputs.cache
+C:\Users\manoj\source\repos\CSharp\CommandDesign\obj\Debug\netcoreapp3.1\CommandDesign.AssemblyInfo.cs
+C:\Users\manoj\source\repos\CSharp\CommandDesign\obj\Debug\netcoreapp3.1\CommandDesign.dll
+C:\Users\manoj\source\repos\CSharp\CommandDesign\obj\Debug\netcoreapp3.1\CommandDesign.pdb
+C:\Users\manoj\source\repos\CSharp\CommandDesign\obj\Debug\netcoreapp3.1\CommandDesign.genruntimeconfig.cache

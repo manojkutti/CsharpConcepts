@@ -1,0 +1,13 @@
+C:\Users\manoj\source\repos\CSharp\Logic1\bin\Debug\netcoreapp3.1\Logic1.exe
+C:\Users\manoj\source\repos\CSharp\Logic1\bin\Debug\netcoreapp3.1\Logic1.deps.json
+C:\Users\manoj\source\repos\CSharp\Logic1\bin\Debug\netcoreapp3.1\Logic1.runtimeconfig.json
+C:\Users\manoj\source\repos\CSharp\Logic1\bin\Debug\netcoreapp3.1\Logic1.runtimeconfig.dev.json
+C:\Users\manoj\source\repos\CSharp\Logic1\bin\Debug\netcoreapp3.1\Logic1.dll
+C:\Users\manoj\source\repos\CSharp\Logic1\bin\Debug\netcoreapp3.1\Logic1.pdb
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.csproj.CoreCompileInputs.cache
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.AssemblyInfoInputs.cache
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.AssemblyInfo.cs
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.dll
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.pdb
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.genruntimeconfig.cache
+C:\Users\manoj\source\repos\CSharp\Logic1\obj\Debug\netcoreapp3.1\Logic1.csprojAssemblyReference.cache
