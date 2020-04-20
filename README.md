@@ -595,5 +595,114 @@ class Program
 https://github.com/EzDevPrac/CSharp-Tereena/tree/master/CommandDesign
 
 
+**Facade Design Pattern:**
 
+Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.
+
+If we try to understand this in simpler terms, then we can say that a room is a façade and just by looking at it from outside the door, one can not predict what is inside the room and how the room is structured from inside. Thus, Façade is a general term for simplifying the outward appearance of a complex or large system.
+
+In software terms, Facade pattern hides the complexities of the systems and provides a simple interface to the clients.
+
+This pattern involves one wrapper class which contains a set of methods available for the client. This pattern is particularly used when a system is very complex or difficult to understand and when the system has multiple subsystems.
+
+**Let’s see the below UML diagram**
+
+
+Here, we can see that the client is calling the Façade class which interacts with multiple subsystems making it easier for the client to interact with them.
+
+However, it is possible that façade may provide limited functionality in comparison to working with the subsystem directly, but it should include all those features which are actually required by the client. 
+
+For example, When someone calls the restaurant, suppose, for ordering pizza or some other food, then the operator on behalf of the restaurant gives the voice interface which is actually the façade for their customers.
+
+Customers place their orders just by talking to the operator and they don’t need to bother about how they will prepare the pizza, what all operations will they perform, on what temperature they will cook, etc. 
+
+Similarly, in our code sample, we can see that the client is using the restaurant façade class to order pizza and bread of different types without directly interacting with the subclasses.
+
+**CODE**
+
+**This is the interface specific to the pizza.**
+
+```csharp
+public interface IPizza {  
+    void GetVegPizza();  
+    void GetNonVegPizza();  
+}  
+```
+
+**This is a pizza provider class which will get pizza for their clients. Here methods can have other private methods which client is not bothered about.**
+```csharp
+public class PizzaProvider: IPizza {  
+    public void GetNonVegPizza() {  
+        GetNonVegToppings();  
+        Console.WriteLine("Getting Non Veg Pizza.");  
+    }  
+    public void GetVegPizza() {  
+        Console.WriteLine("Getting Veg Pizza.");  
+    }  
+    private void GetNonVegToppings() {  
+        Console.WriteLine("Getting Non Veg Pizza Toppings.");  
+    }  
+}  
+```
+
+**Similarly, this is the interface specific for the bread.**
+```csharp
+public interface IBread {  
+    void GetGarlicBread();  
+    void GetCheesyGarlicBread();  
+}  
+```
+
+**And this is a bread provider class.**
+```csharp
+public class BreadProvider: IBread {  
+    public void GetGarlicBread() {  
+        Console.WriteLine("Getting Garlic Bread.");  
+    }  
+    public void GetCheesyGarlicBread() {  
+        GetCheese();  
+        Console.WriteLine("Getting Cheesy Garlic Bread.");  
+    }  
+    private void GetCheese() {  
+        Console.WriteLine("Getting Cheese.");  
+    }  
+}  
+```
+**Below is the restaurant façade class, which will be used by the client to order different pizzas or breads.**
+```csharp
+public class RestaurantFacade {  
+    private IPizza _PizzaProvider;  
+    private IBread _BreadProvider;  
+    public RestaurantFacade() {  
+        _PizzaProvider = new PizzaProvider();  
+        _BreadProvider = new BreadProvider();  
+    }  
+    public void GetNonVegPizza() {  
+        _PizzaProvider.GetNonVegPizza();  
+    }  
+    public void GetVegPizza() {  
+        _PizzaProvider.GetVegPizza();  
+    }  
+    public void GetGarlicBread() {  
+        _BreadProvider.GetGarlicBread();  
+    }  
+    public void GetCheesyGarlicBread() {  
+        _BreadProvider.GetCheesyGarlicBread();  
+    }  
+}  
+```
+**Finally, below is the main method of our program**
+
+```csharp
+void Main() {  
+    Console.WriteLine("----------------------CLIENT ORDERS FOR PIZZA----------------------------\n");  
+    var facadeForClient = new RestaurantFacade();  
+    facadeForClient.GetNonVegPizza();  
+    facadeForClient.GetVegPizza();  
+    Console.WriteLine("\n----------------------CLIENT ORDERS FOR BREAD----------------------------\n");  
+    facadeForClient.GetGarlicBread();  
+    facadeForClient.GetCheesyGarlicBread();  
+}  
+```
+**Referance**
 
