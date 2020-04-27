@@ -1,6 +1,420 @@
-# CsharpConcepts
 
+
+# CsharpConcepts
+ 
 **DESIGN PATTERNS**
+
+**Decorator Pattern**
+
+* The decorator pattern is used to add new functionality to an existing object without changing its structure.
+
+* This pattern creates a decorator class which wraps the original class and add new behaviors/operations to an object at run-time.
+
+**UML Diagram**
+
+![DecoratorUML](https://user-images.githubusercontent.com/39005871/80344809-cd066e00-8885-11ea-82da-5507f3651862.png)
+
+The classes, interfaces, and objects in the above UML class diagram are as follows:
+
+1.  Component
+This is an interface containing members that will be implemented by ConcreteClass and Decorator.
+
+2.  ConcreteComponent
+This is a class which implements the Component interface.
+
+3.  Decorator
+This is an abstract class which implements the Component interface and contains the reference to a Component instance. This class also acts as base class for all decorators for components.
+
+4. ConcreteDecorator
+This is a class which inherits from Decorator class and provides a decorator for components.
+
+**Implementation of Code**
+
+**Component**
+```csharp
+ public interface ICar
+    {
+        string Make { get; }
+        double GetPrice();
+    }
+```
+**ConcreteComponent1**
+```csharp
+public sealed class Hyndai : ICar
+    {
+        public string Make
+        {
+            get { return "HatchBack"; }
+        }
+
+        public double GetPrice()
+        {
+            return 800000;
+        }
+    }
+```
+**ConcreteComponent2**
+```csharp
+public sealed class Suzuki : ICar
+    {
+        public string Make
+        {
+            get { return "Sedan"; }
+        }
+
+        public double GetPrice()
+        {
+            return 800000;
+        }
+    }
+```
+**Decorator**
+```csharp
+    public abstract class CarDecorator : ICar
+    {
+        private ICar car;
+        public CarDecorator(ICar Car)
+        {
+            car = Car;
+        }
+        public string Make
+        {
+            get { return car.Make; }
+        }
+
+        public double GetPrice()
+        {
+            return car.GetPrice();
+        }
+        public abstract double GetDiscountedPrice();
+    }
+ ```
+    
+**ConcreteDecorator**
+
+```csharp
+     public class OfferPrice : CarDecorator
+    {   
+        public OfferPrice(ICar car) : base(car)
+        {
+
+        }
+        public override double GetDiscountedPrice()
+        {
+            return .8 * base.GetPrice();
+        }
+```
+**Entry Point**
+```csharp
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Create Suzuki instance.
+            ICar car = new Suzuki();
+
+            //Wrp Suzuki instance with OfferPrice.   
+            CarDecorator decorator = new OfferPrice(car);
+
+            Console.WriteLine(string.Format("Make :{0}  Price:{1}" +  " DiscountPrice:{2}", decorator.Make, decorator.GetPrice(), decorator.GetDiscountedPrice()));
+        }
+    }
+}
+```
+
+**Reference**
+https://github.com/EzDevPrac/CSharp-Tereena/tree/master/DecoratorDesign
+
+
+
+**Singleton Pattern**
+
+* We need to use the Singleton Design Pattern in C# when we need to ensures that only one instance of a particular class is going to be created and then provide simple global access to that instance for the entire application.
+
+**UML Diagram**
+
+![SingletonUML](https://user-images.githubusercontent.com/39005871/80344821-d5f73f80-8885-11ea-8856-b47cb395029d.png)
+
+* As you can see in the above diagram, different clients (NewObject a, NewObject b and NewObject n) trying to get the singleton instance.  Once the client gets the singleton instance then they invoke the methods.
+
+* Example of the Singleton Design Pattern using C#
+
+* Let us understand the Singleton Design pattern in C# with an example. There are many ways, we can implement the Singleton Design Pattern in C# are as follows.
+
+1.  No Thread-Safe Singleton design pattern.
+2.  Thread-Safety Singleton implementation.
+3.  The Thread-Safety Singleton Design pattern implementation using Double-Check Locking.
+4.  Thread-Safe Singleton Design pattern implementation without using the locks and no lazy instantiation.
+5.  Fully lazy instantiation of the singleton class.
+6.  Using .NET 4’s Lazy<T> type. 
+       
+**Example of No Thread-Safe Singleton design pattern**
+```csharp
+using System;
+
+namespace NoThreadSafeSingletonDesign
+{
+    class Program
+    {
+        //No Thread-Safe Singleton Design Pattern implementation
+        static void Main(string[] args)
+        {
+             Singleton fromTeachaer = Singleton.GetInstance;
+             string str1=fromTeachaer.PrintDetails("From Teacher");
+             Console.WriteLine(str1);
+
+             //or we can do like this
+             //Console.WriteLine(Singleton.GetInstance.PrintDetails("From Teacher"));
+
+
+             //Singleton fromStudent = Singleton.GetInstance;
+            //string str2=fromStudent.PrintDetails("From Student");
+            //Console.WriteLine(str2);
+            Console.WriteLine(Singleton.GetInstance.PrintDetails("From Student"));
+
+        }
+    }
+        public sealed class Singleton
+        {
+            private static int counter = 0;
+            private static Singleton instance = null;
+            public static Singleton GetInstance
+            {
+                get
+                {
+                    if (instance == null)
+                        instance = new Singleton();
+                    return instance;
+                }
+            }
+
+            private Singleton()
+            {
+                counter++;
+                Console.WriteLine("Counter Value " + counter);
+            }
+
+            public string PrintDetails(string message)
+            {
+               //Console.WriteLine(message);
+               return message;
+               
+            }
+        }
+    }
+
+
+```
+
+**Example of Thread-Safe Singleton design pattern using Locking**
+```csharp
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+
+namespace ThreadSafetyWithLockSingleton
+{
+
+    public sealed class Singleton
+    {
+        private static int counter = 0;
+        private static readonly object Instancelock = new object();
+        private Singleton()
+        {
+            counter++;
+            Console.WriteLine("Counter Value " + counter.ToString());
+        }
+        private static Singleton instance = null;
+
+        public static Singleton GetInstance
+        {
+            get
+            {
+                lock (Instancelock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new Singleton();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        public void PrintDetails(string message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Parallel.Invoke(
+                () => PrintTeacherDetails(),
+                () => PrintStudentdetails()
+                );
+        }
+
+        private static void PrintTeacherDetails()
+        {
+            Singleton fromTeacher = Singleton.GetInstance;
+            fromTeacher.PrintDetails("From Teacher");
+        }
+
+        private static void PrintStudentdetails()
+        {
+            Singleton fromStudent = Singleton.GetInstance;
+            fromStudent.PrintDetails("From Student");
+        }
+    }
+}
+
+
+
+
+```
+**Example of Thread-Safety Singleton Design pattern implementation using Double-Check Locking.**
+```csharp
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+
+namespace ThreadSafetyDoubleLockSingleon
+{
+
+    public sealed class Singleton
+    {
+        private static int counter = 0;
+        private static readonly object Instancelock = new object();
+        private Singleton()
+        {
+            counter++;
+            Console.WriteLine("Counter Value " + counter.ToString());
+        }
+        private static Singleton instance = null;
+
+        public static Singleton GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (Instancelock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new Singleton();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+
+
+        public void PrintDetails(string message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+
+        {
+            Parallel.Invoke(
+                () => PrintTeacherDetails(),
+                () => PrintStudentdetails()
+                );
+        }
+
+        private static void PrintTeacherDetails()
+        {
+            Singleton fromTeacher = Singleton.GetInstance;
+            fromTeacher.PrintDetails("From Teacher");
+        }
+
+        private static void PrintStudentdetails()
+        {
+            Singleton fromStudent = Singleton.GetInstance;
+            fromStudent.PrintDetails("From Student");
+        }
+    }
+}
+
+
+```
+**Example of Thread-Safe Singleton design pattern using Eager Loading**
+```csharp
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace EagerLoadingSingleton
+{
+    public sealed class Singleton
+    {
+        private static int counter = 0;
+
+        private Singleton()
+        {
+            counter++;
+            Console.WriteLine("Counter Value " + counter.ToString());
+        }
+
+        private static readonly Singleton singleInstance = new Singleton();
+
+        public static Singleton GetInstance
+        {
+            get
+            {
+                return singleInstance;
+            }
+        }
+
+        public void PrintDetails(string message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Parallel.Invoke(
+                () => PrintTeacherDetails(),
+                () => PrintStudentdetails()
+                );
+        }
+
+        private static void PrintTeacherDetails()
+        {
+            Singleton fromTeacher = Singleton.GetInstance;
+            fromTeacher.PrintDetails("From Teacher");
+        }
+
+        private static void PrintStudentdetails()
+        {
+            Singleton fromStudent = Singleton.GetInstance;
+            fromStudent.PrintDetails("From Student");
+        }
+    }
+}
+
+
+```
+
+**Reference**
+https://github.com/EzDevPrac/CSharp-Tereena/tree/master/EagerLoadingSingleton
+
 
 **Factory Method Design Pattern:**
 * Factory method is a design pattern which defines an interface for creating an object but let the classes that implement the interface decide which class to instantiate.
@@ -708,4 +1122,6 @@ void Main() {
 }  
 ```
 **Referance**
+https://github.com/EzDevPrac/CSharp-Tereena/tree/master/FacadeDesign
+
 
