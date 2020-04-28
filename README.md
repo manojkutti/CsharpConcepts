@@ -4,6 +4,119 @@
  
 **DESIGN PATTERNS**
 
+**Observer Pattern**
+
+* Observer Design Pattern falls under Behavioral Pattern
+
+* This pattern is used when there is one too many relationships between objects such as if one object is modified, its dependent objects are to be notified automatically.
+
+* Observer Design Pattern is allowed a single object, known as the subject, to publish changes to its state and other observer objects that depend upon the subject are automatically notified of any changes to the subject's state.
+
+* There are n numbers of observers (objects) which are interested in a special object (called the subject). Explaining one step further- there are various objects (called observers) which are interested in things going on with a special object (called the subject). So they register (or subscribe) themselves to subject (also called publisher). The observers are interested in happening of an event (this event usually happens in the boundary of subject object) whenever this event is raised (by the subject/publisher) the observers are notified.
+
+**UML Diagram**
+
+![ObserverUML](https://user-images.githubusercontent.com/39005871/80446136-9dae3a80-8933-11ea-9825-9f872d3df75f.png)
+
+1.  Subject They are the publishers. When a change occurs to a subject it should notify all of its subscribers.
+
+2.  Observers They are the subscribers. They simply listen to the changes in the subjects.
+
+**Example**
+
+* Consider an online electronics store which has a huge inventory and they keep on updating it. The store wants to update all its users/customers whenever any product arrives in the store. The online electronic store is going to be the subject. Whenever the subject would have any addition in its inventory, the observers (customers/users) who have subscribed to store notifications would be notified. Let’s look at the code straight away to get an idea of how we can implement Observer pattern in C#.
+
+
+**Subject Interface**
+```csharp
+interface ISubject
+{
+   void Subscribe(Observer observer);
+   void Unsubscribe(Observer observer);
+   void Notify();
+}
+```
+**ConcreteSubject**
+```csharp
+public class Subject:ISubject
+{
+  private List<Observer> observers = new List<Observer>();
+  private int _int;
+  public int Inventory
+  {
+    get
+    {
+       return _int;
+    }
+    set
+    {
+          if (value > _int)
+             Notify();
+          _int = value;
+    }
+  }
+  public void Subscribe(Observer observer)
+  {
+     observers.Add(observer);
+  }
+
+  public void Unsubscribe(Observer observer)
+  {
+     observers.Remove(observer);
+  }
+
+  public void Notify()
+  {
+     observers.ForEach(x => x.Update());
+  }
+}
+```
+**Observer interface**
+```csharp
+interface IObserver
+{
+  void Update();
+}
+```
+**Concrete Observer**
+```csharp
+public class Observer:IObserver
+{
+  public string ObserverName { get;private set; }
+  public Observer(string name)
+  {
+    this.ObserverName = name;
+  }
+  public void Update()
+  {
+    Console.WriteLine("{0}: A new product has arrived at the store",this.ObserverName);
+  }
+}
+```
+
+**Entry Point**
+```csharp
+static void Main(string[] args)
+{
+   Subject subject = new Subject();
+   // Observer1 takes a subscription to the store
+   Observer observer1 = new Observer("Observer 1");
+   subject.Subscribe(observer1);
+   // Observer2 also subscribes to the store
+   subject.Subscribe(new Observer("Observer 2"));
+   subject.Inventory++;
+   // Observer1 unsubscribes and Observer3 subscribes to notifications.
+   subject.Unsubscribe(observer1);
+   subject.Subscribe(new Observer("Observer 3"));
+   subject.Inventory++;
+   Console.ReadLine();
+}
+```
+
+**Reference**
+https://github.com/EzDevPrac/CSharp-Tereena/tree/master/ObserverDesign
+
+
 **Decorator Pattern**
 
 * The decorator pattern is used to add new functionality to an existing object without changing its structure.
