@@ -4,6 +4,96 @@
  
 **DESIGN PATTERNS**
 
+
+**Strategy Pattern**
+
+* Strategy Design Pattern falls under Behavioral Pattern.
+
+* This pattern allows a client to choose an algorithm from a family of algorithms at run-time and gives it a simple way to access it.
+
+* Strategy Design Pattern involves the removal of an algorithm from its host class and putting it in a separate class.
+
+**UML Diagram**
+
+![StrategyUML](https://user-images.githubusercontent.com/39005871/80506714-99196e80-8993-11ea-9084-7ac0e0990694.png)
+
+* The classes, interfaces, and objects in the above UML class diagram are as follows:
+
+**1.Context**
+
+>> This is a class that contains a property to hold the reference of a Strategy object. This property will be set at run-time according to the algorithm that is required.
+
+**2.Strategy**
+
+>>This is an interface that is used by the Context object to call the algorithm defined by a ConcreteStrategy.
+
+**3.ConcreteStrategyA/B**
+
+>>These are classes that implement the Strategy interface.
+
+**Example**
+
+**Strategy Interface**
+```csharp
+public interface ICalculateInterface  
+{  
+  int Calculate(int value1, int value2);  
+}  
+```
+**ConcreteStrategy A**
+```csharp
+class Minus : ICalculateInterface  
+{  
+       public int Calculate(int value1, int value2)  
+        { 
+        return value1 - value2;  
+        }  
+}  
+```
+**ConcreteStrategy B**
+```csharp
+class Plus : ICalculateInterface  
+{  
+       public int Calculate(int value1, int value2)  
+        {  
+           return value1 + value2;  
+        }  
+}  
+```
+**Client**
+```csharp
+class CalculateClient  
+{  
+       private ICalculateInterface calculateInterface;  
+  
+       public CalculateClient(ICalculateInterface strategy)  
+        {  
+            calculateInterface = strategy;  
+        }  
+  
+       public int Calculate(int value1, int value2)  
+        {  
+           return calculateInterface.Calculate(value1, value2);  
+        }  
+}  
+```
+**Entry Point**
+```csharp
+class MainApp  
+{  
+    static void Main()  
+    {  
+        CalculateClient minusClient = new CalculateClient(new Minus());  
+        Response.Write("Minus: " + minusClient.Calculate(7, 1).ToString());  
+  
+         CalculateClient plusClient = new CalculateClient(new Plus());  
+         Response.Write("Plus: " + plusClient.Calculate(7, 1).ToString());  
+     }
+ }
+```
+
+**Reference**
+
 **Observer Pattern**
 
 * Observer Design Pattern falls under Behavioral Pattern
