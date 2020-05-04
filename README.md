@@ -4,6 +4,192 @@
  
 **DESIGN PATTERNS**
 
+**Iterator Pattern**
+
+* Iterator Design Pattern falls under Behavioral Pattern.
+
+* Iterator Design Pattern provides a way to access the elements of a collection object in a sequential manner without knowing its underlying structure.
+
+**UML Diagram**
+
+![IteratorUML](https://user-images.githubusercontent.com/39005871/80931620-ca050380-8dd8-11ea-9e59-907de11794b2.png)
+
+* The classes, interfaces, and objects in the above UML class diagram are as follows:
+
+**1.Client**
+
+>> This is the class that contains an object collection and uses the Next operation of the iterator to retrieve items from the aggregate in an appropriate sequence.
+
+**2.Iterator**
+
+>> This is an interface that defines operations for accessing the collection elements in a sequence.
+
+**3.ConcreteIterator**
+
+>> This is a class that implements the Iterator interface.
+
+**4.Aggregate**
+
+>> This is an interface which defines an operation to create an iterator.
+
+**5.ConcreteAggregate**
+
+>> This is a class that implements an Aggregate interface.
+
+**Example**
+
+**Iterator Interface**
+```csharp
+        public interface Iterator
+    {
+        void First();   //Reset back to the first element
+        string Next();  //Get next
+        bool IsDone();  //End of collection check
+        //string CurrentItem();  //Get current item
+    }
+```
+**ConcreteIterator1
+```csharp
+    public class FacebookIterator : Iterator
+    {
+        private string[] Users;
+        private int position;
+        public FacebookIterator(string[] users)
+        {
+            this.Users = users;
+            
+        }
+        
+        public void First()
+        {
+            position = 0;
+        }
+
+        public string Next()
+        {
+            return Users[position++];
+        }
+
+        public bool IsDone()
+        {
+            return position >= Users.Length;
+        }
+        /*public string CurrentItem()
+        {
+            return Users[position];
+        }*/
+    }
+ ```
+ **ConcreteIterator2
+ ```csharp
+ public class TwitterIterator : Iterator
+    {
+        private string[] Users;
+        private int position;
+        public TwitterIterator(string[] users)
+        {
+            this.Users = users;
+            
+        }
+        
+        public void First()
+        {
+            position = 0;
+        }
+
+        public string Next()
+        {
+            return Users[position++];
+        }
+
+        public bool IsDone()
+        {
+            return position >= Users.Length;
+        }
+
+        /*public string CurrentItem()
+        {
+            return Users[position];
+        }
+        */
+
+    }
+ ```
+ **Aggregate Interface**
+ ```csharp
+ public interface ISocialNetworking
+    {
+        Iterator CreateIterator();
+    }
+ ```
+ **ConcreteAggregate1**
+ ```csharp
+ public class Facebook : ISocialNetworking
+    {
+        private string[] Users;
+        public Facebook() 
+        {
+            // Sign up for an facebook accaount
+            Users = new[] { "terna", "Lavanya", "Raju" };
+        }
+
+        public Iterator CreateIterator()
+        {
+            return new FacebookIterator(Users);
+        }
+    }
+```
+**ConcreteAggregate2**
+```csharp
+    public class Twitter : ISocialNetworking
+    {
+        private string[] Users;
+        public Twitter()
+        {
+            // Sign up for an Twitter accaount
+            Users = new[] { "Karan", "Shashank", "xyz" };
+        }
+
+        public Iterator CreateIterator()
+        {
+            return new TwitterIterator(Users);
+        }
+    }
+```
+**Entry Point**
+```csharp
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            ISocialNetworking fb = new Facebook();
+            ISocialNetworking tw = new Twitter();
+
+            Iterator fbIterator = fb.CreateIterator();
+            Iterator twIterator = tw.CreateIterator();
+
+            Console.WriteLine("Facebook.....");
+            PrintUsers(fbIterator);
+            Console.WriteLine();
+            Console.WriteLine("Twitter.....");
+            PrintUsers(twIterator);
+
+
+
+        }
+
+        public static void PrintUsers(Iterator iterate)
+        {
+            iterate.First();
+            while(!iterate.IsDone())
+            {
+                Console.WriteLine(iterate.Next());
+            }
+
+        }
+    }
+```
+**Reference**
 
 **Strategy Pattern**
 
