@@ -48,7 +48,7 @@
         //string CurrentItem();  //Get current item
     }
 ```
-**ConcreteIterator1
+**ConcreteIterator1**
 ```csharp
     public class FacebookIterator : Iterator
     {
@@ -80,7 +80,7 @@
         }*/
     }
  ```
- **ConcreteIterator2
+ **ConcreteIterator2**
  ```csharp
  public class TwitterIterator : Iterator
     {
