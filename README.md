@@ -4,6 +4,224 @@
  
 **DESIGN PATTERNS**
 
+**Abstract Factory Pattern**
+
+* Abstract Factory Design method falls under Creational Pattern.
+
+* In Abstract Factory pattern an interface is responsible for creating a set of related objects, or dependent objects without specifying their concrete classes.
+
+* Abstract Factory patterns act a super-factory which creates other factories. This pattern is also called a Factory of factories.
+
+**UML Diagram**
+
+![AbstractFactoryUML](https://user-images.githubusercontent.com/39005871/81134339-0a4bb980-8f72-11ea-8218-3ff3ca96dbe6.png)
+
+* The classes, interfaces, and objects in the above UML class diagram are as follows:
+
+**1.AbstractFactory**
+>> This is an interface which is used to create abstract product
+
+**2.ConcreteFactory**
+>>This is a class which implements the AbstractFactory interface to create concrete products.
+
+**3.AbstractProduct**
+>>This is an interface which declares a type of product.
+
+**4.ConcreteProduct**
+>>This is a class which implements the AbstractProduct interface to create a product.
+
+**5.Client**
+>>This is a class which uses AbstractFactory and AbstractProduct interfaces to create a family of related objects.
+
+**Example**
+
+**AbstractFactory Interface**
+```csharp
+interface VehicleFactory
+{
+ Bike GetBike(string Bike);
+ Scooter GetScooter(string Scooter);
+}
+```
+**The 'ConcreteFactory1' class.**
+```csharp
+class HondaFactory : VehicleFactory
+{
+ public Bike GetBike(string Bike)
+ {
+ switch (Bike)
+ {
+ case "Sports":
+ return new SportsBike();
+ case "Regular":
+ return new RegularBike();
+ default:
+ throw new ApplicationException(string.Format("Vehicle '{0}' cannot be created", Bike));
+ }
+
+ }
+
+ public Scooter GetScooter(string Scooter)
+ {
+ switch (Scooter)
+ {
+ case "Sports":
+ return new Scooty();
+ case "Regular":
+ return new RegularScooter();
+ default:
+ throw new ApplicationException(string.Format("Vehicle '{0}' cannot be created", Scooter));
+ }
+
+ }
+}
+```
+**The 'ConcreteFactory2' class.**
+```csharp
+class HeroFactory : VehicleFactory
+{
+ public Bike GetBike(string Bike)
+ {
+ switch (Bike)
+ {
+ case "Sports":
+ return new SportsBike();
+ case "Regular":
+ return new RegularBike();
+ default:
+ throw new ApplicationException(string.Format("Vehicle '{0}' cannot be created", Bike));
+ }
+
+ }
+
+ public Scooter GetScooter(string Scooter)
+ {
+ switch (Scooter)
+ {
+ case "Sports":
+ return new Scooty();
+ case "Regular":
+ return new RegularScooter();
+ default:
+ throw new ApplicationException(string.Format("Vehicle '{0}' cannot be created", Scooter));
+ }
+
+ }
+}
+```
+**The 'AbstractProductA' interface**
+```csharp
+interface Bike
+{
+ string Name();
+}
+```
+**The 'AbstractProductB' interface**
+```csharp
+interface Scooter
+{
+ string Name();
+}
+```
+**The 'ProductA1' class**
+```csharp
+class RegularBike : Bike
+{
+ public string Name()
+ {
+ return "Regular Bike- Name";
+ }
+}
+```
+**The 'ProductA2' class**
+```csharp
+class SportsBike : Bike
+{
+ public string Name()
+ {
+ return "Sports Bike- Name";
+ }
+}
+```
+**The 'ProductB1' class**
+```csharp
+class RegularScooter : Scooter
+{
+ public string Name()
+ {
+ return "Regular Scooter- Name";
+ }
+}
+```
+**The 'ProductB2' class**
+```csharp
+class Scooty : Scooter
+{
+ public string Name()
+ {
+ return "Scooty- Name";
+ }
+}
+```
+**The 'Client' class**
+```csharp
+class VehicleClient
+{
+ Bike bike;
+ Scooter scooter;
+
+ public VehicleClient(VehicleFactory factory, string type)
+ {
+ bike = factory.GetBike(type);
+ scooter = factory.GetScooter(type);
+ }
+
+ public string GetBikeName()
+ {
+ return bike.Name();
+ }
+
+ public string GetScooterName()
+ {
+ return scooter.Name();
+ }
+
+}
+```
+**Abstract Factory Pattern Demo**
+```csharp
+class Program
+{
+ static void Main(string[] args)
+ {
+ VehicleFactory honda = new HondaFactory();
+ VehicleClient hondaclient = new VehicleClient(honda, "Regular");
+ 
+ Console.WriteLine("******* Honda **********");
+ Console.WriteLine(hondaclient.GetBikeName());
+ Console.WriteLine(hondaclient.GetScooterName());
+ 
+ hondaclient = new VehicleClient(honda, "Sports");
+ Console.WriteLine(hondaclient.GetBikeName());
+ Console.WriteLine(hondaclient.GetScooterName());
+ 
+ VehicleFactory hero = new HeroFactory();
+ VehicleClient heroclient = new VehicleClient(hero, "Regular");
+ 
+ Console.WriteLine("******* Hero **********");
+ Console.WriteLine(heroclient.GetBikeName());
+ Console.WriteLine(heroclient.GetScooterName());
+ 
+ heroclient = new VehicleClient(hero, "Sports");
+ Console.WriteLine(heroclient.GetBikeName());
+ Console.WriteLine(heroclient.GetScooterName());
+ 
+ Console.ReadKey();
+ }
+}
+```
+**Reference**
+
 **Iterator Pattern**
 
 * Iterator Design Pattern falls under Behavioral Pattern.
