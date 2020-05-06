@@ -4,6 +4,106 @@
  
 **DESIGN PATTERNS**
 
+**Prototype Design Pattern**
+
+* Prototype pattern falls under Creational Pattern.
+
+* Prototype design pattern is used to create a duplicate object or clone of the current object to enhance performance. This pattern is used when the creation of an object is costly or complex.
+
+**The cloning falls under two categories: shallow and deep.**
+
+* A shallow copy copies all reference types or value types, but it does not copy the objects that the references refer to. The references in the new object point to the same objects that the references in the original object points to.
+
+* (Only Parent Object is cloned here).
+ 
+* In contrast, a deep copy of an object copies the elements and everything directly or indirectly referenced by the elements.
+
+* (Parent Object is cloned along with the containing objects)
+
+**UML Diagram**
+
+![PrototypeUML](https://user-images.githubusercontent.com/39005871/81197106-85968500-8fdd-11ea-9c49-f5546b5699b7.png)
+
+* The classes, interfaces, and objects in the above UML class diagram are as follows:
+
+**1.Prototype**
+
+* This is an interface which is used for the types of object that can be cloned itself.
+
+**2.ConcretePrototype**
+
+* This is a class which implements the Prototype interface for cloning itself.
+
+**Example**
+
+**Address Class**
+```csharp
+public class Address  
+{  
+    public string State  
+    {get;set;}  
+  
+    public string City  
+    {get;set;}   
+}  
+```
+**AuthorForShallowCopy Class**
+```csharp
+public class AuthorForShallowCopy 
+{  
+          public string Name  
+          {get;set;}  
+          public string TwitterAccount  
+          {get;set;}  
+          public string Website  
+          {get;set;}  
+          public Address HomeAddress  
+          {get;set;}  
+          public object Clone()  
+          {  
+                    return this.MemberwiseClone();  
+          }  
+}  
+```
+**Client Code**
+```csharp
+public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Shallow Copy Sample\n");
+            AuthorForShallowCopy o = new AuthorForShallowCopy();
+            
+            o.Name = "Sukesh Marla";
+            o.TwitterAccount = "https://twitter.com/SukeshMarla";
+            o.Website = "http://www.sukesh-marla.com";
+                o.HomeAddress = new Address()
+                {
+                    City = "Mumbai",
+                    State = "Maharastra"
+                };
+            
+            Console.WriteLine("Original Copy");
+            Console.WriteLine(o.GetDetails());
+            AuthorForShallowCopy clonedObject = (AuthorForShallowCopy)o.Clone();
+            Console.WriteLine("\nCloned Copy");
+            Console.WriteLine(clonedObject.GetDetails());
+            Console.WriteLine("\nMake Changes to clone copy address");
+            clonedObject.Name = "Mr.Changer";
+            clonedObject.TwitterAccount = "https://twitter.com/MrChanger";
+            clonedObject.Website = "https://MrChanger.com";
+            clonedObject.HomeAddress.State = "Karnataka";
+            clonedObject.HomeAddress.City = "Manglore";
+            Console.WriteLine("\nCloned Copy");
+            Console.WriteLine(clonedObject.GetDetails());
+            Console.WriteLine("\nOriginal Copy");
+            Console.WriteLine(o.GetDetails());
+        }
+    }
+```
+**Reference**
+
+
 **Abstract Factory Pattern**
 
 * Abstract Factory Design method falls under Creational Pattern.
