@@ -4,6 +4,86 @@
  
 **DESIGN PATTERNS**
 
+**Adapter Design Pattern**
+
+* Adapter pattern falls under Structural Pattern.
+
+* Adapter pattern acts as a bridge between two incompatible interfaces. This pattern involves a single class called adapter which is responsible for communication between two independent or incompatible interfaces.
+
+**For Example:**
+* A card reader acts as an adapter between a memory card and a laptop. You plugins the memory card into card reader and card reader into the laptop so that memory card can be read via laptop.
+
+* Imagine an online shopping portal which displays the products for selling on its home page. These products are coming from a third party vendor with which the portal has tied hands to sell products. The third party vendor already has an inventory system in place which can give the list of products it is selling There is no interface available to online shopping portal with which the portal can call the third party vendor’s inventor code.\
+Imagine an online shopping portal which displays the products for selling on its home page. These products are coming from a third party vendor with which the portal has tied hands to sell products. The third party vendor already has an inventory system in place which can give the list of products it is selling There is no interface available to online shopping portal with which the portal can call the third party vendor’s inventor code.
+
+**UML Diagram**
+
+![AdapterUML](https://user-images.githubusercontent.com/39005871/81669708-35e40d80-9464-11ea-9619-ab3e93ffa8b5.png)
+
+* The classes, interfaces, and objects in the above UML class diagram are as follows:
+
+**01.ITarget**
+>> This is an interface which is used by the client to achieve its functionality/request.
+
+**2.Adapter**
+>> This is a class which implements the ITarget interface and inherits the Adaptee class. It is responsible for communication between Client and Adaptee.
+
+**3.Adaptee**
+>> This is a class which has the functionality, required by the client. However, its interface is not compatible with the client.
+
+**4.Client**
+>> This is a class which interacts with a type that implements the ITarget interface. However, the communication class called adaptee, is not compatible with the client
+
+**Example**
+**ITarget interface**
+```csharp
+interface ITarget
+{
+  List<string> GetProducts();
+}
+```
+**Adapter Class**
+```csharp
+class VendorAdapter:ITarget
+{
+   public List<string> GetProducts()
+   {
+      VendorAdaptee adaptee = new VendorAdaptee();
+      return adaptee.GetListOfProducts();
+   }
+}
+```
+**Adaptee class**
+```csharp
+public class VendorAdaptee
+{
+   public List<string> GetListOfProducts()
+   {
+      List<string> products = new List<string>();
+      products.Add("Gaming Consoles");
+      products.Add("Television");
+      products.Add("Books");
+      products.Add("Musical Instruments");
+      return products;
+   }
+}
+```
+**Client class**
+```csharp
+class ShoppingPortalClient
+{
+   static void Main(string[] args)
+   {
+      ITarget adapter = new  VendorAdapter();
+      foreach (string product in adapter.GetProducts())
+      {
+        Console.WriteLine(product);
+      }
+      Console.ReadLine();
+   }
+}
+```
+
 **Prototype Design Pattern**
 
 * Prototype pattern falls under Creational Pattern.
